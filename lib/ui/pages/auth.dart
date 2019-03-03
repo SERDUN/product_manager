@@ -5,7 +5,7 @@ import 'package:flutter_course/ui/pages/navigation.dart';
 class AuthPage extends StatelessWidget {
   static const String TEXT_PAGE_TITLE = "Task manager";
   static const String BUTTON_SIGN_IN_TITLE = "Sign in";
-  static const double TEXT_PAGE_TITLE_BOTTOM_PADING = 32;
+  static const double TEXT_PAGE_TITLE_BOTTOM_PADDING = 32;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class AuthPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Container(
-              padding: EdgeInsets.only(bottom: TEXT_PAGE_TITLE_BOTTOM_PADING),
+              padding: EdgeInsets.only(bottom: TEXT_PAGE_TITLE_BOTTOM_PADDING),
               child: Text(
                 TEXT_PAGE_TITLE,
                 style: Theme.of(context).accentTextTheme.display1,

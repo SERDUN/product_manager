@@ -4,6 +4,7 @@ class ProductDTO {
 
   ProductDTO(this.title, this.imgAsset);
 
+
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
