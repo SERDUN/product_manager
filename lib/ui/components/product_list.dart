@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_course/repository/dto/ProductDTO.dart';
+import 'package:flutter_course/ui/pages/product_details.dart';
 
 class ProductList extends StatelessWidget {
   final List<ProductDTO> products;
@@ -25,13 +26,7 @@ class ProductList extends StatelessWidget {
             children: <Widget>[
               FlatButton(
                 onPressed: () => {
-                      //openDetailsProduct(products[index])
-//                Navigator.push(context,
-//                    MaterialPageRoute(builder: (BuildContext context) {
-//                      return ProductPage(products[index]);
-//                    })).then((value) {
-//                  if (value) deleteDetailsProduct(index);
-//                })
+                      _openProductDetail(context, currentItem, index)
                     },
                 child: Text(BUTTON_TEXT_DETAILS),
               )
@@ -40,6 +35,15 @@ class ProductList extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Future<dynamic> _openProductDetail(BuildContext context, ProductDTO currentItem, int index) {
+    return Navigator.push(context,
+                        MaterialPageRoute(builder: (BuildContext context) {
+                      return ProductDetailsPage(currentItem);
+                    })).then((value) {
+                      if (value) deleteDetailsProduct(index);
+                    });
   }
 
   @override

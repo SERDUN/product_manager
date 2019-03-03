@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_course/ui/pages/products_page.dart';
+import 'package:flutter_course/ui/pages/navigation.dart';
 
 class AuthPage extends StatelessWidget {
   static const String TEXT_PAGE_TITLE = "Task manager";
@@ -37,7 +37,7 @@ class AuthPage extends StatelessWidget {
       onPressed: () {
         Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (BuildContext app) {
-          return ProductsPage();
+          return NavigationPage();
         }));
       },
     );
