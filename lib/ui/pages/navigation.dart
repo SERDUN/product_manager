@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_course/repository/dto/ProductDTO.dart';
-import 'package:flutter_course/ui/components/products_manager.dart';
-import 'package:flutter_course/ui/components/products_administration.dart';
+import 'package:flutter_course/ui/pages/products_list_manager.dart';
+import 'package:flutter_course/ui/pages/products_administration.dart';
 
 class NavigationPage extends StatefulWidget {
   @override
@@ -11,12 +11,12 @@ class NavigationPage extends StatefulWidget {
 }
 
 class NavigationPageState extends State<NavigationPage> {
-  static const String DRAWER_TITLE_APP_BAR = "Chooese task";
-  static const String PAGE_TITLE_APP_BAR = "Task liat";
-  static const String DRAWER_ITEM_1 = "Choose task";
-  static const String DRAWER_ITEM_2 = "NONE";
+  static const String DRAWER_TITLE_APP_BAR = "Chooese products action";
+  static const String PAGE_TITLE_APP_BAR = "Product list";
+  static const String DRAWER_ITEM_1 = "Choose product";
+  static const String DRAWER_ITEM_2 = "Products administration";
 
-  Widget currentPage = ProductManager();
+  Widget currentPage = ProductListManager();
 
   @override
   Widget build(BuildContext context) {
@@ -39,36 +39,50 @@ class NavigationPageState extends State<NavigationPage> {
           ListTile(
             title: Text(DRAWER_ITEM_1),
             onTap: () {
-              List<ProductDTO> products = List();
-              if (currentPage is ProductsAdministrationPage) {
-                ProductsAdministrationPage manager = currentPage;
-                products.addAll(manager.products);
-              }
-
-              setState(() {
-                currentPage = ProductManager(
-                  products: products,
-                );
-              });
-              Navigator.pop(context);
+              _showProductManagerPage();
             },
           ),
           ListTile(
             title: Text(DRAWER_ITEM_2),
             onTap: () {
-              List<ProductDTO> products = List();
-              if (currentPage is ProductManager) {
-                ProductManager manager = currentPage;
-                products.addAll(manager.getProducts());
-              }
-              setState(() {
-                currentPage = ProductsAdministrationPage(products);
-              });
-              Navigator.pop(context);
+              showAdministrationPage();
             },
           )
         ],
       ),
     );
+  }
+
+  void showAdministrationPage() {
+    List<ProductDTO> products = List();
+    if (currentPage is ProductListManager) {
+      ProductListManager manager = currentPage;
+      products.addAll(manager.getProducts());
+      Navigator.pop(context);
+    } else {
+      Navigator.pop(context);
+      return;
+    }
+    setState(() {
+      currentPage = ProductsAdministrationPage(products);
+    });
+  }
+
+  void _showProductManagerPage() {
+    List<ProductDTO> products = List();
+    if (currentPage is ProductsAdministrationPage) {
+      ProductsAdministrationPage manager = currentPage;
+      products.addAll(manager.products);
+    } else {
+      Navigator.pop(context);
+      return;
+    }
+
+    setState(() {
+      currentPage = ProductListManager(
+        products: products,
+      );
+    });
+    Navigator.pop(context);
   }
 }

@@ -25,9 +25,8 @@ class ProductList extends StatelessWidget {
             alignment: MainAxisAlignment.center,
             children: <Widget>[
               FlatButton(
-                onPressed: () => {
-                      _openProductDetail(context, currentItem, index)
-                    },
+                onPressed: () =>
+                    {_openProductDetail(context, currentItem, index)},
                 child: Text(BUTTON_TEXT_DETAILS),
               )
             ],
@@ -37,13 +36,14 @@ class ProductList extends StatelessWidget {
     );
   }
 
-  Future<dynamic> _openProductDetail(BuildContext context, ProductDTO currentItem, int index) {
+  Future<dynamic> _openProductDetail(
+      BuildContext context, ProductDTO currentItem, int index) {
     return Navigator.push(context,
-                        MaterialPageRoute(builder: (BuildContext context) {
-                      return ProductDetailsPage(currentItem);
-                    })).then((value) {
-                      if (value) deleteDetailsProduct(index);
-                    });
+        MaterialPageRoute(builder: (BuildContext context) {
+      return ProductDetailsPage(currentItem);
+    })).then((value) {
+      if (value) deleteDetailsProduct(index);
+    });
   }
 
   @override
@@ -57,8 +57,10 @@ class ProductList extends StatelessWidget {
     Widget productCards;
 
     if (products.length > 0) {
-      productCards =
-          ListView.builder(itemBuilder: _buildCard, itemCount: products.length);
+      productCards = ListView.builder(
+          padding: EdgeInsets.only(bottom: 72),
+          itemBuilder: _buildCard,
+          itemCount: products.length);
     } else {
       productCards = Container();
     }

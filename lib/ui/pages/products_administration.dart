@@ -17,10 +17,15 @@ class ProductsAdministrationPage extends StatefulWidget {
 }
 
 class ProductsAdministrationState extends State<ProductsAdministrationPage> {
+  static const String TEXT_EMPTY_PRODUCT_LIST =
+      "Product list is empty,  please add products in products page";
+
   @override
   Widget build(BuildContext context) {
-    return ProductAdministrationList(
-        widget.products, _deleteProduct, _updateProduct);
+    return widget.products.isEmpty
+        ? _builtMessageEmptyProducts()
+        : ProductAdministrationList(
+            widget.products, _deleteProduct, _updateProduct);
   }
 
   _deleteProduct(int index) {
@@ -41,5 +46,11 @@ class ProductsAdministrationState extends State<ProductsAdministrationPage> {
         });
       }
     }
+  }
+
+  Widget _builtMessageEmptyProducts() {
+    return Center(
+      child: Text((TEXT_EMPTY_PRODUCT_LIST)),
+    );
   }
 }

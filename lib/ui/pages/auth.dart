@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_course/ui/pages/navigation.dart';
 
 class AuthPage extends StatelessWidget {
-  static const String TEXT_PAGE_TITLE = "Task manager";
+  static const String TEXT_PAGE_TITLE = "Products manager";
   static const String BUTTON_SIGN_IN_TITLE = "Sign in";
   static const double TEXT_PAGE_TITLE_BOTTOM_PADDING = 32;
 

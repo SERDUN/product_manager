@@ -3,11 +3,11 @@ import 'package:flutter_course/repository/dto/ProductDTO.dart';
 import 'package:flutter_course/ui/components/product_controller.dart';
 import 'package:flutter_course/ui/components/product_list.dart';
 
-class ProductManager extends StatefulWidget {
-  _ProductManagerState state = _ProductManagerState();
+class ProductListManager extends StatefulWidget {
+  _ProductListManagerState state = _ProductListManagerState();
   final List<ProductDTO> products;
 
-  ProductManager({this.products});
+  ProductListManager({this.products});
 
   @override
   State<StatefulWidget> createState() {
@@ -19,7 +19,7 @@ class ProductManager extends StatefulWidget {
   }
 }
 
-class _ProductManagerState extends State<ProductManager> {
+class _ProductListManagerState extends State<ProductListManager> {
   List<ProductDTO> _products = [];
 
   @override
@@ -35,19 +35,23 @@ class _ProductManagerState extends State<ProductManager> {
     print(_products);
   }
 
+  // ,
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ProductController(_addProduct),
-        Expanded(
-          child: ProductList(_products, (product) {}, (index) {
-            setState(() {
-              _products.removeAt(index);
-            });
-          }),
-        )
-      ],
+    return Scaffold(
+      body: Column(
+        children: [
+          Expanded(
+            child: ProductList(_products, (product) {}, (index) {
+              setState(() {
+                _products.removeAt(index);
+              });
+            }),
+          )
+        ],
+      ),
+      floatingActionButton: ProductController(_addProduct),
     );
   }
 }
